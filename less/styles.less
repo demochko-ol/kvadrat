@@ -1,4 +1,65 @@
-@import "styles1.less";
+
+
+/* Variables
+-----------------------------------------------------------------------------*/
+@files: 						"../images/";
+@red: 							#ed1a3b;
+@black: 						#2b2b2b;
+@green: 						#2abb9d;
+
+/* mixins
+-----------------------------------------------------------------------------*/
+.transform-rotate(@x){
+	-moz-transform: rotate(@x); /* Для Firefox */
+    -ms-transform: rotate(@x); /* Для IE */
+    -webkit-transform: rotate(@x); /* Для Safari, Chrome, iOS */
+    -o-transform: rotate(@x); /* Для Opera */
+    transform: rotate(@x);
+}
+.transition(@prop){
+	-webkit-transition: (@prop);
+	-o-transition: (@prop);
+	transition: (@prop);
+}
+.bg_size(@size){
+	-webkit-background-size: (@size);
+	-moz-background-size: (@size);
+	background-size: (@size);
+}
+.border-radius(@x){
+	border-radius: (@x);
+	-moz-border-radius: (@x);
+	-webkit-border-radius: (@x);
+}
+.box-shadow(@shadow){
+	box-shadow: (@shadow);
+	-moz-box-shadow: (@shadow);
+	-webkit-box-shadow: (@shadow);
+}
+.list-inline{
+	display: inline-block;
+	vertical-align: middle;
+	list-style: none;
+}
+.list-table{
+	display: table-cell;
+	vertical-align: middle;
+	list-style: none;
+}
+.title-line(@x, @y, @z){
+	position: relative;
+	&:after{
+		position: absolute;
+		width: 35px;
+		height: 2px;
+		bottom: @z;
+		background: @x;
+		left: 0;
+		content: '';
+		margin: auto;
+		right: @y;
+	}
+}
 
 /* Styles
 -----------------------------------------------------------------------------*/
@@ -203,8 +264,6 @@ textarea[placeholder]{
 }
 .wrapper {
 	min-width: 320px;
-	max-width: 1280px;
-	
 	margin: 0 auto;
 	min-height: 100%;
 	height: auto !important;
@@ -224,7 +283,8 @@ textarea[placeholder]{
 	background: transparent url("@{files}corner.png") 0 0 no-repeat;
 	width: 475px;
 	height: 475px;
-	position: absolute;
+	position: fixed;
+	top: 0;
 	z-index: 100;
 	.bg_size(100%);
 	overflow: hidden;
@@ -256,7 +316,6 @@ textarea[placeholder]{
 		z-index: 500;
 		width: 100%;
 		margin: 0 auto;
-    	max-width: 1280px;
 		>.container{
 			background: url("@{files}header_line.png") center center repeat-x;
 			position: relative;
@@ -468,12 +527,14 @@ textarea[placeholder]{
 .content {
 	padding: 0 0 100px;
 	text-align: center;
+	overflow-x: hidden;
 }
 .slider{
 	background: #ffcb08 url("@{files}slider_bg.png") right center no-repeat;
 	padding: 113px 0 0;
 	color: #fff;
 	text-align: left;
+	z-index: 90;
 	position: relative;
 	h1{
 		color: #fff;
@@ -508,16 +569,10 @@ textarea[placeholder]{
 		.bx-prev{
 			background: url("@{files}bx-prev.png") center center no-repeat;
 			left: 0;
-			&:hover{
-				background-image: url("@{files}bx-prev-h.png");
-			}
 		}
 		.bx-next{
 			background: url("@{files}bx-next.png") center center no-repeat;
 			right: 0;
-			&:hover{
-				background-image: url("@{files}bx-next-h.png");
-			}
 		}
 	}
 	.bx-pager{
@@ -670,28 +725,43 @@ textarea[placeholder]{
 	position: relative;
 	width: 100%;
 	&:before{
-		position: absolute;
+		/*position: absolute;
 		content: "";
 		background: url("@{files}delivery_bg.gif") 0 0 no-repeat;
 		width: 100%;
+		 
 		bottom: 0;
 		right: 0;
 		z-index: 17;
 		top: 0;
-		margin-top: -765px;
+		margin-top: -765px; */
+		background: #eee none repeat scroll 0 0;
+	    bottom: 0;
+	    content: "";
+	    left: 61.7%;
+	    margin-top: -40%;
+	    position: absolute;
+	    right: 0;
+	    top: 0;
+	    transform: rotate(45deg);
+	    width: 57%;
+	    z-index: 17;
 	}
 	.delivery_wrap{
 		overflow: hidden;
 		z-index: 19;
 		position: relative;
 	}
+	.delivery_description{
+		width: 35%;
+		float: right;
+	}
 	.delivery_content{
 		text-align: left;
 		width: 425px;
-		float: right;
 		padding: 0 55px 30px 70px;
 		background: url("@{files}clock_icon.png") 0 0 no-repeat;
-		margin-top: -4px;
+		margin: -4px auto 0;
 		z-index: 30;
 		position: relative;
 	}
@@ -729,7 +799,7 @@ textarea[placeholder]{
 		z-index: 25;
 		img{
 			display: block;
-
+			width: 84%;
 		}
 	}
 }
@@ -798,6 +868,7 @@ textarea[placeholder]{
 .location-map{
 	position: relative;
 	img{
+		width: 100%;
 		display: block;
 	}
 }
@@ -806,12 +877,11 @@ textarea[placeholder]{
 	width: 100%;
 	top: 0;
 	bottom: 0;
-	z-index: 30;
 	.marker-wrap{
 		margin-left: -30px;
 		margin-top: -30px;
 		position: absolute;
-		z-index: 26;
+		z-index: 6;
 		left: 72.27%;
 		top: 22.27%;
 		font: 18px/1.2em 'robotomedium';
@@ -850,7 +920,7 @@ textarea[placeholder]{
 		margin-top: -30px;
 		margin-left: 30px;
 		position: relative;
-		z-index: 29;
+		z-index: 9;
 		.close{
 			display: none;
 		}
@@ -864,7 +934,7 @@ textarea[placeholder]{
 		height: 60px;
 		.border-radius(50%);
 		background: #fff;
-		line-height: 60px;
+		line-height: 58px;
 		position: relative;
 		z-index: 10;
 		cursor: pointer;
@@ -873,6 +943,7 @@ textarea[placeholder]{
 }
 .img-team img{
 	display: block;
+	width: 100%;
 }
 .history{
 	margin: 0 -40px 43px;
@@ -1033,7 +1104,6 @@ textarea[placeholder]{
 .footer {
 	margin: -100px auto 0;
 	min-width: 320px;
-	max-width: 1280px;
 	position: relative;
 	background: #2b2b2b;
 	.f-container{
@@ -1257,7 +1327,6 @@ textarea[placeholder]{
 		border-right: 1px solid #e4e4e4;
 		font-size: 18px;
 		text-align: center;
-		padding: 5px 11px;
 	}
 }
 .result{
@@ -1386,14 +1455,11 @@ textarea[placeholder]{
 /* Responsive max-width: 1060px
 -----------------------------------------------------------------------------*/
 
-@media all and (max-width: 1250px) {
+@media all and (max-width: 1065px) {
 	.phone span,
 	.order span{
 		display: none;
 	}
-}
-@media all and (max-width: 1065px) {
-	
 	.location {
 		width: 68%;
 		.location-container{
