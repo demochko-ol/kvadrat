@@ -205,6 +205,7 @@ textarea[placeholder] {
   height: auto !important;
   height: 100%;
   -webkit-transition: margin 0.5 ease;
+  -moz-transition: margin 0.5 ease;
   -o-transition: margin 0.5 ease;
   transition: margin 0.5 ease;
 }
@@ -240,6 +241,7 @@ textarea[placeholder] {
   right: 0;
   min-width: 320px;
   -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
@@ -270,6 +272,7 @@ textarea[placeholder] {
 }
 .header .header-container > .container * {
   -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
@@ -278,6 +281,7 @@ textarea[placeholder] {
   background: rgba(255, 255, 255, 0.6);
   z-index: 505;
   -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
@@ -2603,18 +2607,21 @@ textarea[placeholder] {
   .header-content,
   .header {
     -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
   }
   .wrapper {
     margin: 0;
     -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
   }
   .corner {
     height: 0;
     -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
   }
